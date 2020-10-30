@@ -13,6 +13,6 @@ export const GlobalStyle = createGlobalStyle `
         font-size: 16px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        background-color: #e3e2e4;
+        background-color: #eee;
     }
 `;
