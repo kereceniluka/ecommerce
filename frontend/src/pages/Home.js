@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+// actions
+import { listProducts } from '../actions/products';
 
 // layouts
 import { Container } from '../layouts/Products/ProductsStyle';
 
 // components
 import Product from '../components/Product/Product';
-
-// data
-import products from '../data/products';
+import LoaderSpinner from '../components/Loader/Loader';
 
 const Home = () => {
+
+    const dispatch = useDispatch();
+    const { loading, error, products } = useSelector(state => state.productList);
+
+    useEffect(() => {
+        dispatch(listProducts());
+    }, [dispatch]);
+
     return (
-        <Container>
-            {products.map(product => <Product key={product._id} {...product} />)}
-        </Container>
+        <>
+        {loading ? <LoaderSpinner /> : error ? <h3>{error}</h3> : <Container>{products.map(product => <Product key={product._id} {...product} />)}</Container>}
+        </>
     );
 }
 
