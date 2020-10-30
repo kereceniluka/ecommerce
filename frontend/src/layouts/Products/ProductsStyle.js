@@ -6,7 +6,8 @@ export const Container = styled.section `
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px 10px;
-    padding: 36px 12px;
+    margin-top: 50px;
+    padding: 20px 12px;
 
     ${sizes.tablet} {
         grid-template-columns: repeat(3, 1fr);

@@ -8,9 +8,14 @@ import { Close } from '@styled-icons/material-outlined/Close';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.header `
+    position: fixed;
+    top: 0;
     width: 100%;
     height: 50px;
-    background-color: #2d2d2d;  
+    background-color: #2d2d2d;
+    visibility: ${({ show }) => show ? 'visible' : 'hidden'};
+    transition: all 0.6s ease-in-out;
+    z-index: 1;  
 `;
 
 export const Inner = styled.div `

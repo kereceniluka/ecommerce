@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
     Container,
@@ -21,19 +21,39 @@ import Search from '../Search/Search';
 
 const Header = () => {
 
-    const [search, setSearch] = useContext(SearchContext);
+    /* const [search, setSearch] = useContext(SearchContext);
 
     const handleSearch = () => {
         setSearch(search => true);
+    } */
+
+    const [showNav, setShowNav] = useState({
+        show: false,
+        scrollPos: 0
+    });
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, [showNav.scrollPos]);
+
+    const handleScroll = () => {
+        setShowNav({
+            scrollPos: document.body.getBoundingClientRect().top,
+            show: document.body.getBoundingClientRect().top > showNav.scrollPos
+        });
     }
 
     return (
         <>
-            <Container>
+            <Container show={showNav.show}>
                 <Inner>
                     <Logo to="/">Shop.</Logo>
                     <NavItems>
-                        <SearchIcon size="22" onClick={handleSearch} />
+                        <SearchIcon size="22" />
                         <Link to="/favorites">
                             <FavoriteIcon size="22" />
                         </Link>
