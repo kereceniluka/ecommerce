@@ -9,6 +9,7 @@ import { Container } from '../layouts/Products/ProductsStyle';
 
 // components
 import Product from '../components/Product/Product';
+import Message from '../components/Message/Message';
 import LoaderSpinner from '../components/Loader/Loader';
 
 const Home = () => {
@@ -22,7 +23,7 @@ const Home = () => {
 
     return (
         <>
-        {loading ? <LoaderSpinner /> : error ? <h3>{error}</h3> : <Container>{products.map(product => <Product key={product._id} {...product} />)}</Container>}
+        {loading ? <LoaderSpinner /> : error ? <Message variant="error" title="No products found" message={error} /> : <Container>{products.map(product => <Product key={product._id} {...product} />)}</Container>}
         </>
     );
 }

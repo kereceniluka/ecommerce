@@ -9,6 +9,7 @@ import CartProducts from '../layouts/CartProducts/CartProducts';
 
 // components
 import CartProduct from '../components/CartProduct/CartProduct';
+import Message from '../components/Message/Message';
 import {
     CheckoutContainer,
     SubTotalLabel,
@@ -41,7 +42,7 @@ const Cart = ({ match, location, history }) => {
                 <SubTotalPrice>${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}</SubTotalPrice>
                 <CheckoutBtn type="button" disabled={cartItems.length === 0} onClick={handleCheckout}>Checkout</CheckoutBtn>
             </CheckoutContainer>
-            {cartItems.length === 0 ? <h2>Your cart is empty</h2> : (
+            {cartItems.length === 0 ? <Message variant="info" message="Your cart is empty" /> : (
                 <CartProducts>
                     {cartItems.map(item => <CartProduct key={item.product} {...item} />)}
                 </CartProducts>
