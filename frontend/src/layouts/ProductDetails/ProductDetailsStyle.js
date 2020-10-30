@@ -56,7 +56,7 @@ export const Label = styled.label `
     color: #2d2d2d;
 `;
 
-export const QtyInput = styled.input `
+export const QtyInput = styled.select `
     width: 50%;
     outline: none;
 `;
@@ -74,6 +74,11 @@ export const AddToCartBtn = styled.button `
     text-transform: uppercase;
     margin-left: 24px;
     grid-area: addToCartBtn;
+
+    &&:disabled {
+        opacity: .4;
+        cursor: not-allowed;
+    }
 `;
 
 export const FavoriteBtn = styled.button `
