@@ -9,6 +9,8 @@ export const GlobalStyle = createGlobalStyle `
 
     html,
     body {
+        position: relative;
+        min-height: 100vh;
         font-family: 'PT Sans', sans-serif;
         font-size: 16px;
         -webkit-font-smoothing: antialiased;

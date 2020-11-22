@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // actions
 import { addToCart } from '../actions/cart';
 
 // layout
-import CartProducts from '../layouts/CartProducts/CartProducts';
+import ProductsList from '../layouts/ProductsList/ProductsList';
 
 // components
 import CartProduct from '../components/CartProduct/CartProduct';
@@ -17,13 +18,15 @@ import {
     CheckoutBtn,
 } from '../components/CartProduct/CartProductStyle';
 
-const Cart = ({ match, location, history }) => {
+const Cart = ({ match, location }) => {
 
     const productId = match.params.id;
     const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 
     const dispatch = useDispatch();
     const { cartItems } = useSelector(state => state.cart);
+
+    const history = useHistory();
 
     useEffect(() => {
         if(productId) {
@@ -32,7 +35,7 @@ const Cart = ({ match, location, history }) => {
     }, [dispatch, productId, qty]);
 
     const handleCheckout = () => {
-        history.push('/login?redirect=shipping');
+        history.push('/shipping');
     }
 
     return (
@@ -43,9 +46,9 @@ const Cart = ({ match, location, history }) => {
                 <CheckoutBtn type="button" disabled={cartItems.length === 0} onClick={handleCheckout}>Checkout</CheckoutBtn>
             </CheckoutContainer>
             {cartItems.length === 0 ? <Message variant="info" message="Your cart is empty" /> : (
-                <CartProducts>
+                <ProductsList>
                     {cartItems.map(item => <CartProduct key={item.product} {...item} />)}
-                </CartProducts>
+                </ProductsList>
             )}
         </>
     );

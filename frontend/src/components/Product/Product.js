@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     Container,
     Inner,
@@ -7,50 +8,57 @@ import {
     Image,
     Name,
     BodySection,
+    RatingWrapper,
     StarIcon,
     RatingValue,
     Stock,
     Bottom,
     Price,
-    Discount,
     AddToCartBtn,
     AddIcon,
 } from './ProductStyle';
 
-const Product = ({ _id, name, image, price, rating, favorite, stock, discount}) => {
+// actions
+import { addToCart } from '../../actions/cart';
+import { addToFavorites, removeFromFavorites } from '../../actions/favorites';
 
-    const [stockValue, setStockValue] = useState(null);
+const Product = ({ _id, name, image, price, avgRating, favorite, stock, discount}) => {
 
-    const getStock = () => {
-        if (stock > 10) {
-            return <Stock color="#6eeb83">In Stock</Stock>;
-        }
-        else if (stock > 0 && stock <= 10) {
-            return <Stock color="#f3a712">{stock} available</Stock>;
-        }
-        else {
-            return <Stock color="#db2b39">Out Of Stock</Stock>;
-        }
-    }
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    const dispatch = useDispatch();
+    const { favoriteItems } = useSelector(state => state.favorites);
 
     useEffect(() => {
-        setStockValue(getStock());
-    }, [stock]);
+        favoriteItems.forEach(({ product }) => product === _id && setIsFavorite(true));
+    }, [stock, _id, favoriteItems]);
+
+    const handleAddToCart = (id, qty = 1) => {
+        dispatch(addToCart(id, qty));
+    }
+
+    const handleAddToFavorites = id => {
+        dispatch(addToFavorites(id));
+    }
+
+    const handleRemoveFromFavorites = id => {
+        dispatch(removeFromFavorites(id));
+        setIsFavorite(false);
+    }
 
     return (
         <Container>
             <Inner>
-                {favorite ? <AddedFavoriteIcon size="20" /> : <FavoriteIcon size="20" />}
+                {isFavorite ? <AddedFavoriteIcon size="20" onClick={() => handleRemoveFromFavorites(_id)} /> : <FavoriteIcon size="20" onClick={() => handleAddToFavorites(_id)} />}
                 <Image src={image} alt={name} />
                 <Name to={`/product/${_id}`}>{name}</Name>
                 <BodySection>
-                    <RatingValue><StarIcon size="14" />({rating})</RatingValue>
-                    {stockValue}
+                    <RatingValue><StarIcon size="14" />{avgRating}</RatingValue>
+                    {stock > 0 && stock <= 10 ? <Stock color="#f3a712">{stock} available</Stock> : stock === 0 && <Stock color="#db2b39">Out Of Stock</Stock>}
                 </BodySection>
                 <Bottom>
                     <Price discount={discount}>${price}</Price>
-                    {/* <Discount>{discount}</Discount> */}
-                    <AddToCartBtn type="button" disabled={stock === 0 ? true : false}>
+                    <AddToCartBtn type="button" disabled={stock === 0 ? true : false} onClick={() => handleAddToCart(_id, 1)}>
                         <AddIcon size="14" />
                     </AddToCartBtn>
                 </Bottom>

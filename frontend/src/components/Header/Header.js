@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import {
     Container,
     Inner,
@@ -9,65 +9,49 @@ import {
     FavoriteIcon,
     CartIcon,
     UserIcon,
-    MenuIcon,
-    CloseIcon,
+    LoginIcon,
+    IconLink,
+    IconLinkText,
 } from './HeaderStyle';
 
-// context
-import { SearchContext } from '../../utils/context/SearchContext';
-
-// components
-import Search from '../Search/Search';
+// utils
+import { isEmpty } from '../../utils/helpers';
 
 const Header = () => {
 
-    /* const [search, setSearch] = useContext(SearchContext);
-
-    const handleSearch = () => {
-        setSearch(search => true);
-    } */
-
-    const [showNav, setShowNav] = useState({
-        show: false,
-        scrollPos: 0
-    });
-
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        }
-    }, [showNav.scrollPos]);
-
-    const handleScroll = () => {
-        setShowNav({
-            scrollPos: document.body.getBoundingClientRect().top,
-            show: document.body.getBoundingClientRect().top > showNav.scrollPos
-        });
-    }
+    const { userInfo } = useSelector(state => state.userLogin);
 
     return (
-        <>
-            <Container show={showNav.show}>
-                <Inner>
-                    <Logo to="/">Shop.</Logo>
-                    <NavItems>
+        <Container>
+            <Inner>
+                <Logo to="/">Shop.</Logo>
+                <NavItems>
+                    <IconLink to="/search">
                         <SearchIcon size="22" />
-                        <Link to="/favorites">
-                            <FavoriteIcon size="22" />
-                        </Link>
-                        <Link to="/cart">
-                            <CartIcon size="22" />
-                        </Link>
-                        <Link to="/account">
+                        <IconLinkText>Search</IconLinkText>
+                    </IconLink>
+                    <IconLink to="/favorites">
+                        <FavoriteIcon size="22" />
+                        <IconLinkText>Favorites</IconLinkText>
+                    </IconLink>
+                    <IconLink to="/cart">
+                        <CartIcon size="22" />
+                        <IconLinkText>Cart</IconLinkText>
+                    </IconLink>
+                    {!isEmpty(userInfo) ? (
+                        <IconLink to="/account">
                             <UserIcon size="22" />
-                        </Link>
-                    </NavItems>
-                </Inner>
-            </Container>
-            <Search />
-        </>
+                            <IconLinkText>Profile</IconLinkText>
+                        </IconLink>
+                    ) : (
+                        <IconLink to="/login">
+                            <LoginIcon size="22" />
+                            <IconLinkText>Sign In</IconLinkText>
+                        </IconLink>
+                    )}
+                </NavItems>
+            </Inner>
+        </Container>
     );
 }
 

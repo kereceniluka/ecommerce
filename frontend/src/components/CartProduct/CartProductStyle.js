@@ -74,8 +74,8 @@ export const CheckoutBtn = styled.button `
 
 export const Image = styled.img `
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    min-height: 100%;
+    object-fit: contain;
     grid-area: productImage;
 `;
 
@@ -133,4 +133,10 @@ export const Label = styled.label `
 export const QtyInput = styled.select `
     width: 30%;
     outline: none;
+    padding: 4px 8px;
+    color: #333333;
+    background-color: #eeeeee;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    cursor: pointer;
 `;

@@ -1,10 +1,13 @@
 import React from 'react';
 
+// components
+import ProfileInfo from '../components/ProfileInfo/ProfileInfo';
+
 const Account = () => {
     return (
-        <div>
-            <h1>Account Screen</h1>      
-        </div>
+        <>
+            <ProfileInfo />     
+        </>
     );
 }
 

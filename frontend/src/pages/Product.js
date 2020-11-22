@@ -22,22 +22,33 @@ import {
 
 // actions
 import { listProductDetails } from '../actions/products';
-
-// components
-import LoaderSpinner from '../components/Loader/Loader';
+import { addToFavorites, removeFromFavorites } from '../actions/favorites';
 
 const Product = ({ match, history }) => {
 
+    const [isFavorite, setIsFavorite] = useState(false);
     const [qty, setQty] = useState(1);
+
     const dispatch = useDispatch();
-    const { loading, error, product } = useSelector(state => state.productDetails);
+    const { product } = useSelector(state => state.productDetails);
+    const { favoriteItems } = useSelector(state => state.favorites);
 
     useEffect(() => {
         dispatch(listProductDetails(match.params.id));
-    }, [dispatch]);
+        favoriteItems.forEach(({ product }) => product === match.params.id && setIsFavorite(true));
+    }, [dispatch, favoriteItems, match.params.id]);
 
     const handleAddToCart = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`);
+    }
+
+    const handleAddToFavorites = id => {
+        dispatch(addToFavorites(id));
+    }
+
+    const handleRemoveFromFavorites = id => {
+        dispatch(removeFromFavorites(id));
+        setIsFavorite(false);
     }
 
     return (
@@ -59,7 +70,7 @@ const Product = ({ match, history }) => {
                 </InputContainer>
                 <AddToCartBtn type="button" disabled={product.stock === 0} onClick={handleAddToCart}>Add to cart</AddToCartBtn>
                 <FavoriteBtn>
-                    {product.favorite ? <AddedFavoriteIcon size="22" /> : <FavoriteIcon size="22" />}
+                    {isFavorite ? <AddedFavoriteIcon size="22" onClick={() => handleRemoveFromFavorites(product._id)} /> : <FavoriteIcon size="22" onClick={() => handleAddToFavorites(product._id)} />}     
                 </FavoriteBtn>
                 <DescriptionContainer>
                     <DescriptionTitle>Product details</DescriptionTitle>

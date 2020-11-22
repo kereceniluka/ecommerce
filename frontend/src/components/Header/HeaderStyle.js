@@ -1,21 +1,20 @@
 import styled from 'styled-components/macro';
+import sizes from '../../utils/responsive';
+import { Link, NavLink } from 'react-router-dom';
 import { ShoppingBag } from '@styled-icons/material-outlined/ShoppingBag';
 import { Search } from '@styled-icons/material-outlined/Search';
 import { FavoriteBorder } from '@styled-icons/material-outlined/FavoriteBorder';
 import { Person } from '@styled-icons/octicons/Person';
-import { Menu } from '@styled-icons/material-outlined/Menu';
-import { Close } from '@styled-icons/material-outlined/Close';
-import { Link } from 'react-router-dom';
+import { Login } from '@styled-icons/material-rounded/Login';
 
 export const Container = styled.header `
-    position: fixed;
-    top: 0;
     width: 100%;
     height: 50px;
     background-color: #2d2d2d;
-    visibility: ${({ show }) => show ? 'visible' : 'hidden'};
-    transition: all 0.6s ease-in-out;
-    z-index: 1;  
+
+    ${sizes.desktop} {
+        height: 80px;
+    }
 `;
 
 export const Inner = styled.div `
@@ -29,6 +28,7 @@ export const Inner = styled.div `
 
 export const Logo = styled(Link) `
     text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
     font-size: 22px;
     font-weight: 700;
     color: #ececef;
@@ -40,13 +40,15 @@ export const NavItems = styled.nav `
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    ${sizes.tablet} {
+        width: 35%;
+    }
 `;
 
 export const SearchIcon = styled(Search) `
     color: #ececef;
 `;
-
-export const SearchInput = styled.input ``;
 
 export const FavoriteIcon = styled(FavoriteBorder) `
     color: #ececef;
@@ -61,10 +63,35 @@ export const UserIcon = styled(Person) `
     margin-left: 15px;
 `;
 
-export const MenuIcon = styled(Menu) `
-    color: #ffffff;
+export const LoginIcon = styled(Login) `
+    color: #ececef;
+    margin-left: 15px;
 `;
 
-export const CloseIcon = styled(Close) `
-    color: #ffffff;
+export const IconLink = styled(NavLink) `
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    
+    &.active > *,
+    &:hover > * {
+        color: #996faf;
+        transition: all .5s ease-out;
+    }
+
+    ${sizes.desktop} {
+        display: flex;
+        align-items: center;
+    }
 `;
+
+export const IconLinkText = styled.span `
+    display: none;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ececef;
+    margin-left: 6px;
+    
+    ${sizes.desktop} {
+        display: flex;
+    }
+`; 

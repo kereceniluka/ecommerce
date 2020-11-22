@@ -14,7 +14,7 @@ import {
 } from './CartProductStyle';
 
 // actions
-import { addToCart, removeFromCart } from '../../actions/cart';
+import { removeFromCart, addToCart } from '../../actions/cart';
 
 const CartProduct = ({ product, name, image, price, stock, qty }) => {
 
