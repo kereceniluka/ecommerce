@@ -43,7 +43,7 @@ export const InputContainer = styled.div `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 24px;
+    padding: 20px 0 20px 24px;
     grid-area: inputContainer;
 `;
 
@@ -56,15 +56,21 @@ export const Label = styled.label `
     color: #2d2d2d;
 `;
 
-export const QtyInput = styled.input `
-    width: 50%;
+export const QtyInput = styled.select `
+    width: 60%;
     outline: none;
+    padding: 6px 10px;
+    color: #333333;
+    background-color: #eeeeee;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    cursor: pointer;
 `;
 
 export const AddToCartBtn = styled.button `
     border: none;
     outline: none;
-    width: 80%;
+    width: 85%;
     height: 35px;
     border-radius: 6px;
     font-size: 13px;
@@ -74,6 +80,11 @@ export const AddToCartBtn = styled.button `
     text-transform: uppercase;
     margin-left: 24px;
     grid-area: addToCartBtn;
+
+    &&:disabled {
+        opacity: .4;
+        cursor: not-allowed;
+    }
 `;
 
 export const FavoriteBtn = styled.button `

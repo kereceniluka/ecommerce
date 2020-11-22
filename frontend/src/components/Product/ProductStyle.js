@@ -4,7 +4,6 @@ import { FavoriteBorder } from '@styled-icons/material-outlined/FavoriteBorder';
 import { Favorite } from '@styled-icons/material-twotone/Favorite';
 import { Star } from '@styled-icons/material-outlined/Star';
 import { CartPlus } from '@styled-icons/bootstrap/CartPlus';
-import { CartDash } from '@styled-icons/bootstrap/CartDash';
 
 export const Container = styled.article `
     width: 100%;
@@ -70,8 +69,6 @@ export const StarIcon = styled(Star) `
 
 export const RatingValue = styled.span `
     font-size: 10px;
-    display: flex;
-    align-items: center;
 `;
 
 export const Stock = styled.span `

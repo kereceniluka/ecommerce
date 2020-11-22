@@ -1,14 +1,14 @@
-import { StrictMode } from 'react';
 import { render } from 'react-dom';
 import './index.css';
 import App from './App';
 import { GlobalStyle } from './utils/style/GlobalStyle';
-
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 render(
-  <StrictMode>
+  <Provider store={store}>
     <GlobalStyle />
     <App />
-  </StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );

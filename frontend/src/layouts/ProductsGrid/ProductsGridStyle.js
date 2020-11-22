@@ -6,17 +6,17 @@ export const Container = styled.section `
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px 10px;
-    padding: 36px 12px;
+    padding: 20px 12px 70px 12px;
 
     ${sizes.tablet} {
         grid-template-columns: repeat(3, 1fr);
         gap: 26px 16px;
-        padding: 36px 24px;
+        padding: 36px 24px 86px 24px;
     }
 
     ${sizes.desktop} {
         grid-template-columns: repeat(5, 1fr);
         gap: 38px 26px;
-        padding: 42px 40px;
+        padding: 42px 40px 92px 40px;
     } 
 `;
