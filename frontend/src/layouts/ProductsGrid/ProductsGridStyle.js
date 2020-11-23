@@ -15,8 +15,8 @@ export const Container = styled.section `
     }
 
     ${sizes.desktop} {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 38px 26px;
-        padding: 42px 40px 92px 40px;
+        grid-template-columns: repeat(6, 1fr);
+        row-gap: 10px;
+        padding: 42px 80px 92px 80px;
     } 
 `;

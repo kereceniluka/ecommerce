@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import sizes from '../../utils/responsive';
 import { Link } from 'react-router-dom';
 import { Trash } from '@styled-icons/ionicons-solid/Trash';
 
@@ -16,9 +17,14 @@ export const Inner = styled.div `
         "productImage productPrice"
         "productImage inputContainer";
     row-gap: 10px;
+    align-items: center;
     margin: 0 auto;
     padding: 15px 0;
     border-bottom: 1px solid #eee;
+
+    ${sizes.desktop} {
+        grid-template-rows: repeat(3, 60px);
+    }
 `;
 
 export const CheckoutContainer = styled.div `
@@ -30,6 +36,11 @@ export const CheckoutContainer = styled.div `
         "subTotalPrice checkoutBtn";
     background-color: #ffffff;
     padding: 10px 18px;
+
+    ${sizes.desktop} {
+        height: 120px;
+        padding: 26px 120px;
+    }
 `;
 
 export const SubTotalLabel = styled.h2 `
@@ -40,6 +51,10 @@ export const SubTotalLabel = styled.h2 `
     letter-spacing: 2px;
     text-transform: uppercase;
     grid-area: subTotalLabel;
+
+    ${sizes.desktop} {
+        font-size: 16px;
+    }
 `;
 
 export const SubTotalPrice = styled.span `
@@ -48,6 +63,10 @@ export const SubTotalPrice = styled.span `
     color: #2d2d2d;
     letter-spacing: .8px;
     grid-area: subTotalPrice;
+
+    ${sizes.desktop} {
+        font-size: 15px;
+    }
 `;
 
 export const CheckoutBtn = styled.button `
@@ -70,6 +89,13 @@ export const CheckoutBtn = styled.button `
         opacity: .4;
         cursor: not-allowed;
     }
+
+    ${sizes.desktop} {
+        width: 30%;
+        font-size: 14px;
+        justify-self: end;
+        margin: 0;
+    }
 `;
 
 export const Image = styled.img `
@@ -77,6 +103,10 @@ export const Image = styled.img `
     min-height: 100%;
     object-fit: contain;
     grid-area: productImage;
+
+    ${sizes.desktop} {
+        height: 50px;
+    }
 `;
 
 export const Header = styled.div `
@@ -98,10 +128,20 @@ export const Name = styled(Link) `
         text-decoration: underline;
         cursor: pointer;
     }
+
+    ${sizes.desktop} {
+        font-size: 16px;
+    }
 `;
 
 export const RemoveIcon = styled(Trash) `
     color: #2d2d2d;
+
+    ${sizes.desktop} {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
 `;
 
 export const Price = styled.span `
@@ -111,6 +151,10 @@ export const Price = styled.span `
     color: #2d2d2d;
     padding-left: 10px;
     grid-area: productPrice;
+
+    ${sizes.desktop} {
+        font-size: 20px;
+    }
 `;
 
 export const InputContainer = styled.div `
@@ -128,6 +172,10 @@ export const Label = styled.label `
     letter-spacing: 1.7px;
     color: #2d2d2d;
     margin-right: 10px;
+
+    ${sizes.desktop} {
+        font-size: 16px;
+    }
 `;
 
 export const QtyInput = styled.select `
@@ -139,4 +187,9 @@ export const QtyInput = styled.select `
     border: 1px solid #dddddd;
     border-radius: 6px;
     cursor: pointer;
+
+    ${sizes.desktop} {
+        width: 20%;
+        padding: 6px 10px;
+    }
 `;
