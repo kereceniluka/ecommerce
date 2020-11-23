@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import sizes from '../../utils/responsive';
 import { Link } from 'react-router-dom';
 import { Trash } from '@styled-icons/ionicons-solid/Trash';
 
@@ -15,9 +16,14 @@ export const Inner = styled.div `
         "productImage header"
         "productImage productPrice";
     row-gap: 10px;
+    align-items: center;
     margin: 0 auto;
     padding: 15px 0;
     border-bottom: 1px solid #eee;
+
+    ${sizes.desktop} {
+        grid-template-rows: repeat(2, 60px);
+    }
 `;
 
 export const Image = styled.img `
@@ -25,6 +31,10 @@ export const Image = styled.img `
     min-height: 100%;
     object-fit: contain;
     grid-area: productImage;
+
+    ${sizes.desktop} {
+        height: 50px; 
+    }
 `;
 
 export const Header = styled.div `
@@ -46,10 +56,20 @@ export const Name = styled(Link) `
         text-decoration: underline;
         cursor: pointer;
     }
+
+    ${sizes.desktop} {
+        font-size: 16px;
+    }
 `;
 
 export const RemoveIcon = styled(Trash) `
     color: #2d2d2d;
+
+    ${sizes.desktop} {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
 `;
 
 export const Price = styled.span `
@@ -59,4 +79,8 @@ export const Price = styled.span `
     color: #2d2d2d;
     padding-left: 10px;
     grid-area: productPrice;
+
+    ${sizes.desktop} {
+        font-size: 20px;
+    }
 `;

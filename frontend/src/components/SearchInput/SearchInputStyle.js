@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import sizes from '../../utils/responsive';
 import { Search } from '@styled-icons/material-outlined/Search';
 
 export const Container = styled.div `
@@ -9,6 +10,12 @@ export const Container = styled.div `
     align-items: center;
     justify-content: center;
     padding: 0 12px;
+
+    ${sizes.desktop} {
+        width: 40%;
+        height: 120px;
+        margin: 0 auto;
+    }
 `;
 
 export const Inner = styled.div `
@@ -23,11 +30,20 @@ export const Inner = styled.div `
     &:focus-within {
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
         transition: all .3s ease-in-out; 
+    }
+
+    ${sizes.desktop} {
+        height: 55px;
     } 
 `;
 
 export const SearchIcon = styled(Search) `
     color: #996faf;
+
+    ${sizes.desktop} {
+        width: 24px;
+        height: 24px;
+    }
 `;
 
 export const Input = styled.input `
@@ -38,4 +54,9 @@ export const Input = styled.input `
     font-size: 14px;
     color: #2d2d2d;
     padding: 4px 8px;
+
+    ${sizes.desktop} {
+        height: 55px;
+        font-size: 16px;
+    }
 `;

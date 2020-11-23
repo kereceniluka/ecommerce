@@ -31,11 +31,11 @@ const PaymentForm = () => {
         <Container>
             <Inner onSubmit={handleSubmit(onSubmit)}>
                 <InputContainer>
-                    <Label>Select method</Label>
+                    <Label>Select method:</Label>
                     <RadioInput type="radio" id="payPal" name="paymentMethod" value="PayPal" ref={register} defaultChecked />
-                    <label htmlFor="payPal">PayPal / Credit Card</label>
+                    <Label htmlFor="payPal">PayPal / Credit Card</Label>
                     <RadioInput type="radio" id="stripe" name="paymentMethod" value="Stripe" ref={register} />
-                    <label htmlFor="stripe">Stripe</label>
+                    <Label htmlFor="stripe">Stripe</Label>
                     <SubmitBtn type="submit">Continue</SubmitBtn>
                 </InputContainer>
             </Inner>

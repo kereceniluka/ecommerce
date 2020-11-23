@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import sizes from '../../utils/responsive';
 import { Link } from 'react-router-dom';
 import { PackageIcon } from '@styled-icons/boxicons-regular/PackageIcon';
 import { Assignment } from '@styled-icons/material-outlined/Assignment';
@@ -39,7 +40,11 @@ export const ProfileOptions = styled.div `
     align-items: center;
     background-color: #ffffff;
     margin-top: 35px;
-    padding: 0 20px; 
+    padding: 0 20px;
+
+    ${sizes.desktop} {
+        width: 50%;
+    } 
 `;
 
 export const ProfileOption = styled.div `
@@ -47,28 +52,56 @@ export const ProfileOption = styled.div `
     height: 60px;
     display: flex;
     align-items: center;
+
+    ${sizes.desktop} {
+        height: 80px;
+    }
 `;
 
 export const OptionLink = styled(Link) `
     text-decoration: none;
     color: #2d2d2d;
     margin-left: 20px;
+
+    ${sizes.desktop} {
+        font-size: 20px;
+    }
 `;
 
 export const OrdersIcon = styled(PackageIcon) `
     color: #2d2d2d;
+
+    ${sizes.desktop} {
+        width: 26px;
+        height: 26px;
+    }
 `;
 
 export const DetailsIcon = styled(Assignment) `
     color: #2d2d2d;
+
+    ${sizes.desktop} {
+        width: 26px;
+        height: 26px;
+    }
 `;
 
 export const AddressIcon = styled(HomeWork) `
     color: #2d2d2d;
+
+    ${sizes.desktop} {
+        width: 26px;
+        height: 26px;
+    }
 `;
 
 export const LogoutIcon = styled(LogOut) `
     color: #2d2d2d;
+
+    ${sizes.desktop} {
+        width: 26px;
+        height: 26px;
+    }
 `;
 
 export const ContentDivider = styled.div `
@@ -76,4 +109,8 @@ export const ContentDivider = styled.div `
     height: 1px;
     background-color: #eee;
     align-self: flex-end;
+
+    ${sizes.desktop} {
+        width: 95%;
+    }
 `;

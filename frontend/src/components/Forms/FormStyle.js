@@ -26,6 +26,10 @@ export const InputContainer = styled.div `
     display: flex;
     flex-direction: column;
     margin: 10px 0;
+
+    ${sizes.desktop} {
+        width: 30%;
+    }
 `;
 
 export const Label = styled.label `
@@ -35,6 +39,10 @@ export const Label = styled.label `
     line-height: 1.7;
     letter-spacing: 1.7px;
     color: #2d2d2d;
+
+    ${sizes.desktop} {
+        font-size: 14px;
+    }
 `;
 
 export const Input = styled.input `
@@ -49,6 +57,11 @@ export const Input = styled.input `
 
     &:focus {
         border: 1px solid #996faf;
+    }
+
+    ${sizes.desktop} {
+        height: 50px;
+        font-size: 20px;
     }
 `;
 
@@ -68,12 +81,21 @@ export const SubmitBtn = styled.button `
         opacity: .4;
         cursor: not-allowed;
     }
+
+    ${sizes.desktop} {
+        font-size: 18px;
+        cursor: pointer;
+    }
 `;
 
 export const NewUser = styled.span `
     font-size: 14px;
     font-weight: 500;
     color: #2d2d2d;
+
+    ${sizes.desktop} {
+        font-size: 18px;
+    }
 `;
 
 export const NewUserLink = styled(Link) `
@@ -85,6 +107,10 @@ export const NewUserLink = styled(Link) `
     &:hover {
         text-decoration: underline;
         cursor: pointer;
+    }
+
+    ${sizes.desktop} {
+        font-size: 18px;
     }
 `;
 
@@ -110,5 +136,5 @@ export const SelectInput = styled.select `
 `;
 
 export const RadioInput = styled.input `
-    
+    margin: 10px 0;
 `;
